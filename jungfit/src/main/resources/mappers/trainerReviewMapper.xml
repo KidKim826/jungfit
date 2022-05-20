@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jung.fitness.model.dao.TrainerReviewDao">
+	<resultMap type="trainerReview" id="trainerReviewMap">
+		<result column="review_id" property="reviewId" />
+		<result column="trainer_id" property="trainerId" />
+		<result column="user_id" property="userId" />
+		<result column="title" property="title" />
+		<result column="reg_date" property="regDate" />
+		<result column="content" property="content" />
+		<result column="view_cnt" property="viewCnt" />
+	</resultMap>
+
+	<insert id="insertTReview" parameterType="trainerReview">
+		INSERT INTO trainer_reviews
+		VALUES (0, #{trainerId}, #{userId}, #{title}, now(), #{content}, #{viewCnt})
+	</insert>
+
+	<update id="updateTReview" parameterType="trainerReview">
+		<!-- resultType을 안줘도 알아서 영향을 준 애의 개수를 반환한다 -->
+		UPDATE trainer_reviews
+		SET
+		title = #{title},
+		user_id = #{userId},
+		content = #{content},
+		view_cnt = #{viewCnt}
+		WHERE review_id = #{reviewId}
+	</update>
+
+	<delete id="deleteVReview" parameterType="int">
+		DELETE FROM trainer_reviews
+		WHERE review_id = #{reviewId}
+	</delete>
+
+	<select id="selectOne" resultMap="trainerReviewMap"
+		parameterType="int">
+		SELECT review_id, trainer_id, user_id, title,
+		date_format(reg_date,'%Y-%m-%d %H:%i:%s') as reg_date, 
+		content, view_cnt
+		FROM trainer_reviews
+		WHERE trainer_id = #{trainerId}
+	</select>
+
+
+	<select id="selectList" resultMap="trainerReviewMap"
+		parameterType="java.util.HashMap">
+		SELECT review_id, trainer_id, user_id, title,
+		date_format(reg_date,'%Y-%m-%d %H:%i:%s') as reg_date, 
+		content, view_cnt
+		FROM trainer_reviews
+		<if test="mode == 1">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="mode == 2">
+			WHERE content LIKE '%${keyword}%'
+		</if>
+		<if test="mode == 3">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			OR content
+			LIKE '%${keyword}%'
+		</if>
+	</select>
+</mapper>
