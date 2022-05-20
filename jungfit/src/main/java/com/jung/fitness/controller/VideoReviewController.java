@@ -26,7 +26,8 @@ public class VideoReviewController {
 	private VideoReviewService vReviewService;
 
 	@GetMapping("/video")
-	public ResponseEntity<List<VideoReview>> list(@RequestParam(defaultValue = "") String mode,
+	public ResponseEntity<List<VideoReview>> list(@RequestParam(
+			defaultValue = "") String mode,
 			@RequestParam(defaultValue = "") String keyword) {
 
 		HashMap<String, String> params = new HashMap<String, String>();

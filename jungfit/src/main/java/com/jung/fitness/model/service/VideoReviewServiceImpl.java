@@ -38,10 +38,10 @@ public class VideoReviewServiceImpl implements VideoReviewService {
 
 	@Override
 	public void modifyVReview(VideoReview vReview) {
-		VideoReview vr = vReviewDao.selectOne(vReview.getReviewId());
-		vr.setTitle(vr.getTitle());
-		vr.setContent(vr.getContent());
-		vReviewDao.updateVReview(vr);
+		VideoReview originvr = vReviewDao.selectOne(vReview.getReviewId());
+		originvr.setTitle(vReview.getTitle());
+		originvr.setContent(vReview.getContent());
+		vReviewDao.updateVReview(originvr);
 	}
 
 	@Override

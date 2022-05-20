@@ -19,7 +19,6 @@
 	</insert>
 
 	<update id="updateTReview" parameterType="trainerReview">
-		<!-- resultType을 안줘도 알아서 영향을 준 애의 개수를 반환한다 -->
 		UPDATE trainer_reviews
 		SET
 		title = #{title},
@@ -29,7 +28,7 @@
 		WHERE review_id = #{reviewId}
 	</update>
 
-	<delete id="deleteVReview" parameterType="int">
+	<delete id="deleteTReview" parameterType="int">
 		DELETE FROM trainer_reviews
 		WHERE review_id = #{reviewId}
 	</delete>
@@ -40,7 +39,7 @@
 		date_format(reg_date,'%Y-%m-%d %H:%i:%s') as reg_date, 
 		content, view_cnt
 		FROM trainer_reviews
-		WHERE trainer_id = #{trainerId}
+		WHERE review_id = #{reviewId}
 	</select>
 
 
