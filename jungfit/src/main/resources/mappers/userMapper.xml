@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jung.fitness.model.dao.UserDao">
+	<resultMap type="user" id="userMap">
+		<!-- 왼쪽은 Db 오른쪽은 dto -->
+		<!-- 명시적으로 표시해주려고 id / 변수가 기본키라서 -->
+		<result column="seq" property="seq"/>
+		<result column="user_id" property="userId" />
+		<result column="password" property="password" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="address" property="address" />
+		<result column="bmi" property="bmi" />
+		<result column="height" property="height" />
+		<result column="weight" property="weight" />
+		<result column="age" property="age" />
+		<result column="membership" property="membership" />
+		<result column="trainer_id" property="trainerId" />
+	</resultMap>
+
+	<!-- insert 추가 -->
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO users
+		VALUES (0, #{userId}, #{password}, #{name}, #{email}, 
+		#{address}, #{bmi}, #{height}, #{weight}, #{age}, #{membership}, #{trainerId})
+	</insert>
+	<!-- user 가져오기 -->
+	<select id="selectById" resultType="user" parameterType="String">
+		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+	<!-- user 리스트로 가져오기 -->
+	<select id="selectList" resultMap="userMap">
+		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id
+		FROM users
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM users
+		WHERE user_id = #{userId}
+	</delete>
+	<!-- update -->
+	<update id="updateUser" parameterType="user">
+		UPDATE users
+		SET
+		password = #{password},
+		name = #{name},
+		email = #{email},
+		address = #{address},
+		bmi = #{bmi},
+		height = #{height},
+		weight = #{weight},
+		membership = #{membership},
+		trainer_id = #{trainerId}
+		WHERE user_id = #{userId}
+	</update>
+	
+	
+</mapper>
