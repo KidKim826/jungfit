@@ -27,7 +27,7 @@
 		#{address}, #{bmi}, #{height}, #{weight}, #{age}, #{membership}, #{trainerId})
 	</insert>
 	<!-- user 가져오기 -->
-	<select id="selectById" resultType="user" parameterType="String">
+	<select id="selectById" resultMap="userMap" parameterType="String">
 		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id
 		FROM users
 		WHERE user_id = #{userId}

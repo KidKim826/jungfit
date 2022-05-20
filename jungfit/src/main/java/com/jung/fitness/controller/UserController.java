@@ -8,10 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jung.fitness.model.dto.User;
@@ -36,8 +35,8 @@ public class UserController { // 여기는 그냥 일반 회원
 	
 	
 	@PostMapping("/user")
-	public ResponseEntity<User> login(HttpSession session, String id, String pw) throws Exception {
-		User user = userService.login(id, pw);
+	public ResponseEntity<User> login(HttpSession session, String userId, String password) throws Exception {
+		User user = userService.login(userId, password);
 		if (user != null)
 			session.setAttribute("userId", user.getUserId());
 		System.out.println(user);
