@@ -6,11 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jung.fitness.model.dto.User;
@@ -53,18 +52,20 @@ public class UserController { // 여기는 그냥 일반 회원
 	}
 
 	// update 랑 updateform
-//	@PutMapping("/user")
-//	public ResponseEntity<String> modify(HttpSession session) {
-//	
-//		
-//	}
+	@PutMapping("/user")
+	public ResponseEntity<String> modify(User user, String ckpw, String newpw) throws Exception {
+		
+		userService.modifyUser(user, ckpw, newpw);
+		return new ResponseEntity<String> ("SUCCESS", HttpStatus.OK);
+	}
 	
 	
 	// delete
-	@DeleteMapping("/user")
-	public ResponseEntity<String> delete(String id, String pw) {
+	@PostMapping("/user/withdraw")
+	public ResponseEntity<String> delete(HttpSession session, String userId, String password) {
 		try {
-			userService.deleteUser(id, pw);
+			userService.deleteUser(userId, password);
+			session.invalidate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

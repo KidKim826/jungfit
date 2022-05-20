@@ -46,10 +46,13 @@ public class UserServiceImpl implements UserService{
 
 	//수정 (update)
 	@Override
-	public void modifyUser(User user) throws Exception{
+	public void modifyUser(User user, String ckpw, String newpw) throws Exception{
 		// TODO Auto-generated method stub
 		User originUser = userDao.selectById(user.getUserId());
-		originUser.setPassword(new SHA256().getHash(originUser.getPassword()));
+		if(!originUser.getPassword().equals(new SHA256().getHash(ckpw)))
+			throw new PWIncorrectException();
+		else
+		originUser.setPassword(new SHA256().getHash(newpw));
 		originUser.setAddress(originUser.getAddress());
 		originUser.setEmail(originUser.getEmail());
 		originUser.setHeight(originUser.getHeight());
@@ -63,6 +66,7 @@ public class UserServiceImpl implements UserService{
 	public void deleteUser(String id, String pw) throws Exception {
 		// TODO Auto-generated method stub
 		User user = userDao.selectById(id);
+		System.out.println(user);
 		// pw가 맞는 경우만 delete
 		if(!user.getPassword().equals(new SHA256().getHash(pw)))
 			throw new PWIncorrectException();
@@ -77,5 +81,6 @@ public class UserServiceImpl implements UserService{
 		return userDao.selectList();
 	}
 
+	
 
 }

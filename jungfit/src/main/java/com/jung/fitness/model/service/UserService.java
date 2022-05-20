@@ -12,7 +12,7 @@ public interface UserService {
 	User login(String id, String pw) throws Exception;
 
 	// 회원 정보 수정
-	void modifyUser(User user) throws Exception;
+	void modifyUser(User user, String ckpw, String newpw) throws Exception;
 
 	// 회원 탈퇴
 	void deleteUser(String id, String pw) throws Exception;
@@ -20,6 +20,9 @@ public interface UserService {
 	// 유저 목록 조회
 	List<User> readListUser();
 	
+	
+//	// pw 확인
+//	boolean originalPW(User user, String ckpw) throws Exception;
 	
 	// 멤버십 업데이트
 	
