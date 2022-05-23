@@ -50,16 +50,18 @@
 		date_format(reg_date,'%Y-%m-%d %H:%i:%s') as reg_date, 
 		content, view_cnt
 		FROM video_reviews
+		WHERE video_id = #{videoId}
 		<if test="mode == 1">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			AND title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="mode == 2">
-			WHERE content LIKE '%${keyword}%'
+			AND content LIKE '%${keyword}%'
 		</if>
 		<if test="mode == 3">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			AND (title LIKE CONCAT('%', #{keyword}, '%')
 			OR content
-			LIKE '%${keyword}%'
+			LIKE '%${keyword}%')
 		</if>
 	</select>
+	
 </mapper>

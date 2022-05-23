@@ -3,10 +3,10 @@ package com.jung.fitness.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +27,15 @@ public class VideoReviewController {
 	@Autowired
 	private VideoReviewService vReviewService;
 
-	@GetMapping("/video")
-	public ResponseEntity<List<VideoReview>> list(@RequestParam(
-			defaultValue = "") String mode,
+	@GetMapping("/videoList/{videoId}")
+	public ResponseEntity<List<VideoReview>> list(@PathVariable
+			String videoId,
+			@RequestParam(defaultValue = "") String mode,
 			@RequestParam(defaultValue = "") String keyword) {
-
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("mode", mode);
 		params.put("keyword", keyword);
+		params.put("videoId", videoId);
 		return new ResponseEntity<List<VideoReview>>(vReviewService.getVReviewList(params), HttpStatus.OK);
 	}
 

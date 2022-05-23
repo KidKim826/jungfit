@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jung.fitness.model.dao.VideoDao">
+	<resultMap type="video" id="videoMap">
+		<result column="video_id" property="videoId" />
+		<result column="title" property="title" />
+		<result column="part" property="part" />
+		<result column="view_cnt" property="viewCnt" />
+		<result column="trainer_id" property="trainerId" />
+	</resultMap>
+	
+	<!-- 등록 -->
+	<insert id="createVideo" parameterType="video">
+		INSERT INTO videos
+		VALUES (#{videoId}, #{title}, #{part}, #{viewCnt}, #{trainerId})
+	</insert>
+	
+	<!-- 하나만 읽어오기 -->
+	<select id="getVideoById" resultMap="videoMap" parameterType="String">
+		SELECT video_id, title, part, view_cnt, trainer_id
+		FROM videos
+		WHERE video_id = #{videoId}
+	</select>
+	
+	<!-- 리스트로 읽어오기(부위별) -->
+	<select id="seletVideoList" resultMap="videoMap" parameterType="String">
+		SELECT video_id, title, part, view_cnt, trainer_id
+		FROM videos
+		WHERE part = #{part}
+	</select>
+	
+	<!-- 삭제 -->
+	<delete id="deleteVideo" parameterType="String">
+		DELETE FROM videos
+		WHERE video_id = #{videoId}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="updateVideo" parameterType="video">
+		UPDATE videos
+		SET
+		title = #{title},
+		view_cnt = #{viewCnt}
+		WHERE video_id = #{videoId}
+	</update>
+	
+	<!-- 만약에 검색조건 쓴다면 -->
+	<!-- <select id="seletVideoList" resultMap="videoMap" parameterType="java.util.HashMap">
+		SELECT video_id, title, part, view_cnt, trainer_id
+		FROM videos
+		<if test="mode == 1">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="mode == 2">
+			WHERE part LIKE '%${keyword}%'
+		</if>
+		<if test="mode == 3">
+			WHERE trainer_id LIKE '%${keyword}%'
+		</if>
+		<if test="mode == 4">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			OR content LIKE '%${keyword}%'
+			OR trainer_id LIKE '%${keyword}%'
+		</if>
+	</select> -->
+	
+	
+	
+</mapper>
