@@ -36,6 +36,7 @@ public class VideoController {
 	//삭제
 	@DeleteMapping("/list/{videoId}")
 	public ResponseEntity<String> delete(@PathVariable String videoId) {
+		videoService.deleteVideo(videoId);
 		return new ResponseEntity<String> ("DELETE SUCCESS", HttpStatus.OK);
 	}
 	
