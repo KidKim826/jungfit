@@ -27,7 +27,7 @@ public class VideoReviewController {
 	@Autowired
 	private VideoReviewService vReviewService;
 
-	@GetMapping("/videoList/{videoId}")
+	@GetMapping("/video-review/{videoId}")
 	public ResponseEntity<List<VideoReview>> list(@PathVariable
 			String videoId,
 			@RequestParam(defaultValue = "") String mode,
