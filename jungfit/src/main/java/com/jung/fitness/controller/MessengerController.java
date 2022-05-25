@@ -54,13 +54,9 @@ public class MessengerController {
 		return new ResponseEntity<String> (SUCCESS, HttpStatus.OK);
 	}
 
-	@GetMapping("/message/{no}") //불통
+	@GetMapping("/message/{no}") //통
 	public ResponseEntity<Message> detail(@PathVariable int no) {
-		try {
-			messengerService.getMessage(no);
-		} catch (Exception e) {
-			throw new MessageNotFoundException(no + "번 메일은 없습니다.");
-		}
+		messengerService.getMessage(no);
 		return new ResponseEntity<Message> (messengerService.getMessage(no), HttpStatus.OK);
 	}
 

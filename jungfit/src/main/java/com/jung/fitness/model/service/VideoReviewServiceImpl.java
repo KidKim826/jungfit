@@ -56,4 +56,9 @@ public class VideoReviewServiceImpl implements VideoReviewService {
 		vReviewDao.updateVReview(vr);
 	}
 
+	@Override
+	public List<VideoReview> getMyVReviewList(String userId) {
+		return vReviewDao.selectListById(userId);
+	}
+
 }

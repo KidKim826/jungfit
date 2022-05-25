@@ -38,9 +38,9 @@
 	<update id="updateMessage" parameterType="message">
 		UPDATE messages
 		SET
-		message = #{message}
+		message = #{message},
 		view = #{view}
-		WEHRE no = #{no}
+		WHERE no = #{no}
 	</update>
 
 </mapper>

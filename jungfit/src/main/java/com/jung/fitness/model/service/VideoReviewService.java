@@ -26,4 +26,7 @@ public interface VideoReviewService {
 
 	// 뷰카운트 증가
 	void updateCnt(int id);
+	
+	//해당하는 id가 작성한 리뷰 리스트 가져오기
+	List<VideoReview> getMyVReviewList(String userId);
 }
