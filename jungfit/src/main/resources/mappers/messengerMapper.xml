@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jung.fitness.model.dao.MessengerDao">
+	<resultMap type="message" id="messageMap">
+		<result column="no" property="no"/>
+		<result column="send_id" property="sendId"/>
+		<result column="receive_id" property="receiveId"/>
+		<result column="message" property="message"/>
+		<result column="view" property="view"/>
+	</resultMap>
+	
+	<!-- send(create) -->
+	<insert id="createMessage" parameterType="message">
+		INSERT INTO messages
+		VALUES (0, #{sendId}, #{receiveId}, #{message}, #{view})
+	</insert>
+	<!-- 하나만 읽어오기 -->
+	<select id="getMessageByNo" resultMap="messageMap" parameterType="int">
+		SELECT no, send_id, receive_id, message, view
+		FROM messages
+		WHERE no = #{no}
+	</select>
+	<!-- 리스트로 읽기 -->
+	<select id="selectListById" resultMap="messageMap" parameterType="String">
+		SELECT no, send_id, receive_id, message, view
+		FROM messages
+		WHERE receive_id = #{receiveId}
+	</select>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteMessage" parameterType="int">
+		DELETE FROM messages
+		WHERE no = #{no}
+	</delete>
+	<!-- 업데이트 -->
+	<update id="updateMessage" parameterType="message">
+		UPDATE messages
+		SET
+		message = #{message}
+		view = #{view}
+		WEHRE no = #{no}
+	</update>
+
+</mapper>

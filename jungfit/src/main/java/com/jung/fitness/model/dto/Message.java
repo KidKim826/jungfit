@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
+	private int no;
 	private String sendId;
 	private String receiveId;
 	private String message;

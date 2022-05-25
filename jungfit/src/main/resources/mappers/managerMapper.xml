@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jung.fitness.model.dao.ManagerDao">
+	<resultMap type="manager" id="managerMap">
+		<!-- 왼쪽은 Db 오른쪽은 dto -->
+		<!-- 명시적으로 표시해주려고 id / 변수가 기본키라서 -->
+		<result column="manager_id" property="managerId"/>
+		<result column="password" property="password" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="office_num" property="officeNum" />
+		<result column="pos" property="position" />
+	</resultMap>
+	
+	<!-- 매니저 조회 -->
+	<!-- user 가져오기 -->
+	<select id="selectById" resultMap="managerMap" parameterType="String">
+		SELECT manager_id, password, name, email, office_num, pos
+		FROM managers
+		WHERE manager_id = #{managerId}
+	</select>
+	
+	
+	<!-- update -->
+	<update id="updateManager" parameterType="manager">
+		UPDATE managers
+		SET
+		password = #{password},
+		name = #{name},
+		email = #{email},
+		office_num = #{officeNum},
+		pos = #{position}
+	</update>
+</mapper>
