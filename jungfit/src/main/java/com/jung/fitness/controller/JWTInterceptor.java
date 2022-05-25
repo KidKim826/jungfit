@@ -21,6 +21,14 @@ public class JWTInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		
+		if (request.getMethod().equals("OPTIONS")) {
+			//jwt 토큰을 쓸 때 유효한지 한 번 미리 보내본다.
+			//그 때 요청이 꼬여서 미리 보내보는 것과 실제 보내는 거에서 문제가 생겨서.
+			//추가해줘야해
+            return true;
+        }
+		
 		final String token= request.getHeader(HEADER_AUTH);
 		System.out.println("token: " + token);
 		if(token != null) {

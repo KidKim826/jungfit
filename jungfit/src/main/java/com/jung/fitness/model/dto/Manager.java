@@ -13,4 +13,5 @@ public class Manager {
 	private String name;
 	private String email;
 	private String officeNum;
+	private String position;
 }

@@ -1,6 +1,5 @@
 package com.jung.fitness.model.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

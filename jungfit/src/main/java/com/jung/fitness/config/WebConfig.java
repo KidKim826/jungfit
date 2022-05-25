@@ -2,6 +2,7 @@ package com.jung.fitness.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 		registry
 		.addMapping("/**")
 		.allowedOrigins("*")
-		.allowedMethods("GET", "POST","PUT","DELETE")
+		.allowedMethods("GET","POST","PUT","DELETE")
 		.maxAge(6000);
 		//30분 1800초 그러면 600이 10분 / 6000이면 100분 / 1시간 40분
 	}
@@ -34,7 +35,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(jwtInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/jung/user");
+				.excludePathPatterns("/jung/user/**", "/admin/**");
 	}
 	
 }
