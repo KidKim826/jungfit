@@ -1,6 +1,5 @@
 package com.jung.fitness.model.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +78,14 @@ public class UserServiceImpl implements UserService{
 	public List<User> readListUser() {
 		// TODO Auto-generated method stub
 		return userDao.selectList();
+	}
+
+	// 비밀번호 ""비우고 보내기
+	@Override
+	public User getUserWoPw(String id) throws Exception {
+		User user = userDao.selectById(id);
+		user.setPassword("");
+		return user;
 	}
 
 	
