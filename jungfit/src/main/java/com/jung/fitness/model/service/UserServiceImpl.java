@@ -80,6 +80,14 @@ public class UserServiceImpl implements UserService{
 		return userDao.selectList();
 	}
 
+	// 비밀번호 ""비우고 보내기
+	@Override
+	public User getUserWoPw(String id) throws Exception {
+		User user = userDao.selectById(id);
+		user.setPassword("");
+		return user;
+	}
+
 	
 
 }

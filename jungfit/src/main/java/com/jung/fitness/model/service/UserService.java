@@ -20,7 +20,8 @@ public interface UserService {
 	// 유저 목록 조회
 	List<User> readListUser();
 	
-	
+	// WithOut Pw
+	User getUserWoPw(String id) throws Exception;
 //	// pw 확인
 //	boolean originalPW(User user, String ckpw) throws Exception;
 	

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,25 +43,25 @@ public class UserController { // 여기는 그냥 일반 회원
 	private static final String FAIL = "fail";
 
 	@PostMapping("/user")
-	public ResponseEntity<Map<String, Object>> login(String userId, String password) throws Exception{
+	public ResponseEntity<Map<String, Object>> login(String userId, String password) throws Exception {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		
+
 		HashMap<String, Object> result = new HashMap<>();
 		User user = userService.login(userId, password);
-		try {	
-				if (user.getUserId() != null) {
+		try {
+			if (user.getUserId() != null) {
 				result.put("access-token", jwtUtil.createToken("id", user.getUserId()));
 				result.put("message", SUCCESS);
 				status = HttpStatus.ACCEPTED;
-				}else {
-				//실패 했을 때 처리할거 써주기
-				}
-		}catch(Exception e) {
+			} else {
+				// 실패 했을 때 처리할거 써주기
+			}
+		} catch (Exception e) {
 			result.put("message", FAIL);
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		
-		return new ResponseEntity<Map<String,Object>>(result, status);
+
+		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 
 	// logout
@@ -95,6 +96,12 @@ public class UserController { // 여기는 그냥 일반 회원
 	public ResponseEntity<String> createUser(User user) throws Exception {
 		userService.join(user);
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);// 201번
+	}
+
+	// 아이디로만 정보 가져오기
+	@GetMapping("/user/getinfo/{id}")
+	public ResponseEntity<User> getinfo(@PathVariable String id) throws Exception {
+		return new ResponseEntity<User>(userService.getUserWoPw(id), HttpStatus.OK);
 	}
 
 }

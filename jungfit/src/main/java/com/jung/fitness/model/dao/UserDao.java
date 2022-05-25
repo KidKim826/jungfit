@@ -19,4 +19,8 @@ public interface UserDao {
 
 	// 유저 목록 조회 RL
 	List<User> selectList();
+	
+	// 비번 제외 유저 조회
+	User selectByIdWoPw(String id) throws Exception;
+	
 }

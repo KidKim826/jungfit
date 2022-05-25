@@ -58,6 +58,5 @@
 		trainer_id = #{trainerId}
 		WHERE user_id = #{userId}
 	</update>
-	
-	
+
 </mapper>
