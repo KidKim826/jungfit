@@ -2,7 +2,6 @@ package com.jung.fitness.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -35,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(jwtInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/jung/user/**", "/admin/**");
+				.excludePathPatterns("/jung/user/**", "/admin/**","/video/**","/review/**");
 
 	}
 	
