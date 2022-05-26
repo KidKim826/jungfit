@@ -86,20 +86,20 @@ CREATE TABLE `trainer_reviews` (
 	FOREIGN KEY (user_id) REFERENCES users (user_id)
 )ENGINE=InnoDB;
 
-CREATE TABLE `schedules`(
-	`user_id` VARCHAR(40) NOT NULL,
-    `trainer_id` VARCHAR(40) NOT NULL,
-    `meet_date` DATETIME,
-    FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
-	FOREIGN KEY (user_id) REFERENCES users (user_id)
-)ENGINE=InnoDB;
+-- CREATE TABLE `schedules`(
+--	`user_id` VARCHAR(40) NOT NULL,
+--    `trainer_id` VARCHAR(40) NOT NULL,
+--    `meet_date` DATETIME,
+--    FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
+--	FOREIGN KEY (user_id) REFERENCES users (user_id)
+-- )ENGINE=InnoDB;
 
-CREATE TABLE `zzims` (
-	`user_id` VARCHAR(40) NOT NULL,
-    `video_id`  VARCHAR(40) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (user_id),
-    FOREIGN KEY (video_id) REFERENCES videos (video_id)
-)ENGINE=InnoDB;
+-- CREATE TABLE `zzims` (
+--	`user_id` VARCHAR(40) NOT NULL,
+--  `video_id`  VARCHAR(40) NOT NULL,
+--  FOREIGN KEY (user_id) REFERENCES users (user_id),
+--    FOREIGN KEY (video_id) REFERENCES videos (video_id)
+-- )ENGINE=InnoDB;
 
 CREATE TABLE `followers` (
 	`my_id` varchar(40) NOT NULL,
@@ -108,9 +108,9 @@ CREATE TABLE `followers` (
     FOREIGN KEY (your_id) REFERENCES users (user_id)
 )ENGINE=InnoDB;
 
-CREATE TABLE `promotions`(
-   `p_code` VARCHAR(40) NOT NULL
-)ENGINE=InnoDB;
+-- CREATE TABLE `promotions`(
+--   `p_code` VARCHAR(40) NOT NULL
+-- )ENGINE=InnoDB;
 
 CREATE TABLE `messages` (
 	`no` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -121,6 +121,9 @@ CREATE TABLE `messages` (
 	FOREIGN KEY (send_id) REFERENCES users (user_id),
 	FOREIGN KEY (receive_id) REFERENCES users (user_id)
 )ENGINE=InnoDB;
+
+
+
 
 
 
