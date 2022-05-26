@@ -24,4 +24,8 @@ public interface VideoService {
 
 	// 수정
 	void modifyVideo(Video video);
+	
+	// 트레이너로 조회
+	List<Video> readVideoByTrainer(String trainerId);
+	
 }

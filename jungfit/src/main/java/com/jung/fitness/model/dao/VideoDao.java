@@ -20,4 +20,8 @@ public interface VideoDao {
 
 	// update수정
 	void updateVideo(Video video);
+	
+	// 트레이너로 비디오 가져오기
+	List<Video> selectByTrainer(String trainerId);
+	
 }

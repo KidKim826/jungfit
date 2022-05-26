@@ -54,4 +54,8 @@ public class VideoServiceImpl implements VideoService{
 		videoDao.updateVideo(v);
 	}
 
+	@Override
+	public List<Video> readVideoByTrainer(String trainerId) {	
+		return videoDao.selectByTrainer(trainerId);
+	}
 }
