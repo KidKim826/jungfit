@@ -24,17 +24,17 @@
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO users
 		VALUES (0, #{userId}, #{password}, #{name}, #{email}, 
-		#{address}, #{bmi}, #{height}, #{weight}, #{age}, #{membership}, #{trainerId})
+		#{address}, #{bmi}, #{height}, #{weight}, #{age}, #{membership}, #{trainerId}, #{fileName},#{fileUri})
 	</insert>
 	<!-- user 가져오기 -->
 	<select id="selectById" resultMap="userMap" parameterType="String">
-		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id
+		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id, file_name, file_uri
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
 	<!-- user 리스트로 가져오기 -->
 	<select id="selectList" resultMap="userMap">
-		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id
+		SELECT seq, user_id, password, name, email, address, bmi, height, weight, age, membership, trainer_id, file_name, file_uri
 		FROM users
 	</select>
 	
@@ -55,7 +55,9 @@
 		height = #{height},
 		weight = #{weight},
 		membership = #{membership},
-		trainer_id = #{trainerId}
+		trainer_id = #{trainerId},
+		file_name = #{fileName},
+		file_uri = #{fileUri}
 		WHERE user_id = #{userId}
 	</update>
 

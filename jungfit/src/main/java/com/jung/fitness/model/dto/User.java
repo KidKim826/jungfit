@@ -20,4 +20,6 @@ public class User {
 	private int age;
 	private int membership;
 	private String trainerId;
+	private String fileName;
+	private String fileUri;
 }
