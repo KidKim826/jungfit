@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.jung.fitness.controller.JWTInterceptor;
@@ -12,8 +13,6 @@ import com.jung.fitness.controller.JWTInterceptor;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
-	
-	
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
@@ -34,7 +33,13 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(jwtInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/jung/user/**", "/admin/**", "/video/list/**", "/review/**", "/follower/**");
+				.excludePathPatterns("/jung/user/**","/jung/user/prof-update/**", "/admin/**", "/video/list/**", "/review/**", "/follower/**","/img/**");
+	}
+		
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 	
 }

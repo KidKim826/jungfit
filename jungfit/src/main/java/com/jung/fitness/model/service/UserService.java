@@ -20,10 +20,13 @@ public interface UserService {
 	// 유저 목록 조회
 	List<User> readListUser();
 	
-	// WithOut Pw
+	// 유저 정보 아이디로만 가져오기 (WithOut Pw)
 	User getUserWoPw(String id) throws Exception;
 //	// pw 확인
 //	boolean originalPW(User user, String ckpw) throws Exception;
+	
+	// 유저 정보 수정하기 비밀번호 없이 수정(WithOut Pw)
+	void updateProfPic(User user) throws Exception;
 	
 	// 멤버십 업데이트
 	

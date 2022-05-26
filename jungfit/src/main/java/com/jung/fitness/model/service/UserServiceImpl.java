@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jung.fitness.exception.PWIncorrectException;
 import com.jung.fitness.exception.UserNotFoundException;
@@ -52,10 +53,10 @@ public class UserServiceImpl implements UserService{
 			throw new PWIncorrectException();
 		else
 		originUser.setPassword(new SHA256().getHash(newpw));
-		originUser.setAddress(originUser.getAddress());
-		originUser.setEmail(originUser.getEmail());
-		originUser.setHeight(originUser.getHeight());
-		originUser.setWeight(originUser.getWeight());
+		originUser.setAddress(user.getAddress());
+		originUser.setEmail(user.getEmail());
+		originUser.setHeight(user.getHeight());
+		originUser.setWeight(user.getWeight());
 		//소개
 		userDao.updateUser(originUser);
 	}
@@ -88,6 +89,12 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
-	
+	@Override
+	public void updateProfPic(User user) throws Exception {
+		User originUser = userDao.selectById(user.getUserId());
+		originUser.setFileName(user.getFileName());
+		originUser.setFileUri(user.getFileUri());
+		userDao.updateUser(originUser);
+	}
 
 }

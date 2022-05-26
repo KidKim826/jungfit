@@ -18,6 +18,7 @@
 		<result column="age" property="age" />
 		<result column="membership" property="membership" />
 		<result column="trainer_id" property="trainerId" />
+		<result column="file_name" property="fileName" />		
 	</resultMap>
 
 	<!-- insert 추가 -->
