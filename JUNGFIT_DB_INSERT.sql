@@ -106,7 +106,9 @@ VALUES
 (0, "2LyDkE7sDec", "migon", "미곤이는 미곤란", now(),"미곤이는 호흡곤란", 0),
 (0, "2LyDkE7sDec", "ddasumi", "수미는 오늘도 필라테스", now(),"필라테스 조항조하", 0),
 (0, "2LyDkE7sDec", "dowoon", "오늘도 운동했다", now(),"존맛탱구탱구탱구야놀자", 0),
-(0, "2LyDkE7sDec", "migon", "미곤이는 오늘도 수영중", now(),"미곤이는 호흡곤란", 0);
+(0, "2LyDkE7sDec", "migon", "미곤이는 오늘도 수영중", now(),"미곤이는 호흡곤란", 0)
+(0, "2LyDkE7sDec", "heejung", "운동 재밌다", now(),"사실 아니다 뻥이다", 0),
+(0, "2LyDkE7sDec", "jungah", "운동 재밌다", now(),"사실 아니다 뻥이다", 0);
 
 
 -- /////////////////////managers
@@ -139,11 +141,11 @@ values
 ("ymk","ddasumi");
 
 INSERT INTO messages VALUES
-("heejung","jungah","오늘 운동했어?",0),
-("jungah","heejung","나 아직,,,, 너는?",0),
-("heejung","jungah","나도 아직ㅜ 이제 가려고.. 이따 같이하자",0),
-("jungah","heejung","그래 좋아 7시에 만나자",0),
-("heejung","jungah","오키 이따봐",0); 
+(0,"heejung","jungah","오늘 운동했어?",0),
+(0,"jungah","heejung","나 아직,,,, 너는?",0),
+(0,"heejung","jungah","나도 아직ㅜ 이제 가려고.. 이따 같이하자",0),
+(0,"jungah","heejung","그래 좋아 7시에 만나자",0),
+(0,"heejung","jungah","오키 이따봐",0); 
 
 
 
