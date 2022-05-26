@@ -27,7 +27,7 @@ public class VideoController {
 		return new ResponseEntity<List<Video>> (videoService.readVideoList(part), HttpStatus.OK);
 	}
 	
-	//리뷰 아이디로 상세 조회
+	//비디오 아이디로 상세 조회
 	@GetMapping("/list/{videoId}")
 	public ResponseEntity<Video> detail(@PathVariable String videoId) {
 		return new ResponseEntity<Video> (videoService.readVideoById(videoId), HttpStatus.OK);
