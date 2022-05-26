@@ -20,4 +20,7 @@ public interface VideoReviewDao {
 
 	// 비디오 리뷰 D
 	void deleteVReview(int id);
+	
+	//해당하는 id가 작성한 리뷰 리스트 가져오기
+	List<VideoReview> selectListById(String userId);
 }

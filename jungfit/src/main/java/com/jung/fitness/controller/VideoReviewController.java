@@ -37,6 +37,11 @@ public class VideoReviewController {
 		params.put("videoId", videoId);
 		return new ResponseEntity<List<VideoReview>>(vReviewService.getVReviewList(params), HttpStatus.OK);
 	}
+	
+	@GetMapping("/video-review/loginuser/{userId}")
+	public ResponseEntity<List<VideoReview>> userVideolist(@PathVariable String userId) {
+		return new ResponseEntity<List<VideoReview>>(vReviewService.getMyVReviewList(userId), HttpStatus.OK);
+	}
 
 	@PostMapping("/video")
 	public ResponseEntity<String> writeVReview(VideoReview vReview) {

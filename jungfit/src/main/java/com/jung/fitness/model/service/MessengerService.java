@@ -16,6 +16,8 @@ public interface MessengerService {
 	
 	//하나 상세 읽기
 	Message getMessage(int no);
+	
+	void modifyMessage(Message message);
 
 	// 읽음 처리
 	void updateView(int no);

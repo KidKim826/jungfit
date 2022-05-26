@@ -113,6 +113,7 @@ CREATE TABLE `promotions`(
 )ENGINE=InnoDB;
 
 CREATE TABLE `messages` (
+	`no` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`send_id` VARCHAR(40) NOT NULL,
     `receive_id` VARCHAR(40) NOT NULL,
     `message` text,

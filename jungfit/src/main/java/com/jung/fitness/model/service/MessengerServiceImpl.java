@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jung.fitness.model.dao.MessengerDao;
 import com.jung.fitness.model.dao.UserDao;
 import com.jung.fitness.model.dto.Message;
+import com.jung.fitness.model.dto.Video;
 
 @Service("messengerService")
 public class MessengerServiceImpl implements MessengerService{
@@ -50,5 +51,16 @@ public class MessengerServiceImpl implements MessengerService{
 		this.updateView(no);
 		return messengerDao.getMessageByNo(no);
 	}
+
+	@Override
+	public void modifyMessage(Message message) {
+		// TODO Auto-generated method stub
+		Message m = messengerDao.getMessageByNo(message.getNo());
+		m.setMessage(message.getMessage());
+		m.setView(1);
+		messengerDao.updateMessage(m);;
+	}
+	
+	
 
 }
